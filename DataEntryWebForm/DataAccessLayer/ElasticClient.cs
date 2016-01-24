@@ -19,7 +19,7 @@ namespace DataEntryWebForm.DataAccessLayer
         /// Current instantiated client
         public ElasticClient Current { get; set; }
 
-
+       
 
         /// Constructor
         public EsClient()
@@ -32,6 +32,7 @@ namespace DataEntryWebForm.DataAccessLayer
 
             Current = new ElasticClient(_settings);
             Current.Map<HadoopMetaDataModels>(m => m.MapFromAttributes());
+            
         }
 
     }
