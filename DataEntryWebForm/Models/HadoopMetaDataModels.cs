@@ -13,31 +13,35 @@ namespace DataEntryWebForm.Models
         [ElasticProperty(Name = "_id", NumericType = NumberType.Long)]
         public string Id { get; set; }
 
-        [ElasticProperty(Name = "hasChildren")]
+        [ElasticProperty(Name = "extract_name")]
         public string ExtractName { get; set; }
 
-        [ElasticProperty(Name = "hasChildren")]
+        [ElasticProperty(Name = "description")]
         public string Description { get; set; }
 
-        [ElasticProperty(Name = "hasChildren")]
+        [ElasticProperty(Name = "requestor")]
         public string Requestor { get; set; }
 
-        [ElasticProperty(Name = "hasChildren")]
+        [ElasticProperty(Name = "requestor_email")]
         public string RequestorEmail { get; set; }
 
-        [ElasticProperty(Name = "hasChildren")]
+        [ElasticProperty(Name = "request")]
         public string Request { get; set; }
 
-        [ElasticProperty(Name = "hasChildren")]
+        [ElasticProperty(Name = "data_sources")]
         public string[] DataSources { get; set; }
 
-        [ElasticProperty(Name = "hasChildren")]
+        [ElasticProperty(Name = "data_extract_details")]
         public string DataExtractDetails { get; set; }
 
         // select box; hdfs, hbase, elastic, other
+        [ElasticProperty(Name = "storage_location")]
         public string ClusterStorageLocation { get; set; }
 
+        [ElasticProperty(Name = "storage_path")]
         public string ClusterStoragePath { get; set; }
+
+        [ElasticProperty(Name = "start_date")]
         public DateTime StartDate { get; set; }
     }
 }
