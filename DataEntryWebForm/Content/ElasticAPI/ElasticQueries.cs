@@ -14,7 +14,7 @@ namespace DataEntryWebForm.Content.ElasticAPI
         public List<HadoopMetaDataModels> IndexDetails()
         {
 
-            var queryDslPath = @"~/Content/ElasticQuery/Dsl/details_index.txt";
+            var queryDslPath = @"C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\jsonQueries.txt";
 
             // instantiate connection object
             EsClient ec = new EsClient();
