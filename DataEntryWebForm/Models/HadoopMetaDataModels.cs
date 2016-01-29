@@ -1,6 +1,7 @@
 ﻿using Nest;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -13,6 +14,7 @@ namespace DataEntryWebForm.Models
         [ElasticProperty(Name = "_id", NumericType = NumberType.Long)]
         public string Id { get; set; }
 
+        [Required]
         [ElasticProperty(Name = "extract_name")]
         public string ExtractName { get; set; }
 
