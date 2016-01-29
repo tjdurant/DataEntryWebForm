@@ -150,3 +150,5 @@ C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\Microsof
 C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\obj\Debug\DataEntryWebForm.csprojResolveAssemblyReference.cache
 C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\obj\Debug\DataEntryWebForm.dll
 C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\obj\Debug\DataEntryWebForm.pdb
+C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\Mvc.JQuery.DataTables.Core.dll
+C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\Mvc.JQuery.DataTables.dll
