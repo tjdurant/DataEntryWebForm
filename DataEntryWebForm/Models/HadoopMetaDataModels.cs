@@ -31,7 +31,7 @@ namespace DataEntryWebForm.Models
         public string Request { get; set; }
 
         [ElasticProperty(Name = "data_sources")]
-        public string[] DataSources { get; set; }
+        public string DataSources { get; set; }
 
         [ElasticProperty(Name = "data_extract_details")]
         public string DataExtractDetails { get; set; }
