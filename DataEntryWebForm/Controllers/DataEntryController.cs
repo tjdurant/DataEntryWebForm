@@ -58,6 +58,7 @@ namespace DataEntryWebForm.Controllers
             // instantiate elastic client from data access layer
             EsClient es = new EsClient();
 
+            hadoopMetaDataModels.Id = Guid.NewGuid().ToString();
 
             // create index; index doesn't exist
             es.Current.CreateIndex(ci => ci.Index("hadoop_metadata")
@@ -70,8 +71,11 @@ namespace DataEntryWebForm.Controllers
                     .Type<HadoopMetaDataModels>()
                     .Indices("hadoop_metadata"));
 
-            hadoopMetaDataModels.Id = Guid.NewGuid();
-
+            if (ModelState.IsValid)
+            {
+                es.Current.Index<HadoopMetaDataModels>(hadoopMetaDataModels);
+                return RedirectToAction("Index");
+            }
 
             return View(hadoopMetaDataModels);
         }
