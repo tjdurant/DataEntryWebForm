@@ -33,6 +33,18 @@ namespace DataEntryWebForm.Content.ElasticAPI
                 .QueryRaw(queryString)
                 );
 
+            var list = searchResult.Hits.Select(h =>
+            {
+                return h.Source;
+            }).ToList();
+
+            //var results = searchResult.Hits.Select(hit =>
+            //{
+            //    var run = hit.Source;
+            //    run.Id = hit.Id;
+            //    return run;
+            //});
+
             indexDetails = searchResult.Documents.ToList();
             
             return indexDetails;

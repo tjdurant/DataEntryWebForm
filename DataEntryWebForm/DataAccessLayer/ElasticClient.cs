@@ -31,7 +31,8 @@ namespace DataEntryWebForm.DataAccessLayer
             _settings.MapDefaultTypeNames(m => m.Add(typeof(HadoopMetaDataModels), Constants.DEFAULT_INDEX_TYPE));
 
             Current = new ElasticClient(_settings);
-            Current.Map<HadoopMetaDataModels>(m => m.MapFromAttributes());
+            Current.Map<HadoopMetaDataModels>(m => m
+                .MapFromAttributes());
             
         }
 

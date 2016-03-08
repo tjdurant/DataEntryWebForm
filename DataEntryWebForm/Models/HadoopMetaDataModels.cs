@@ -1,4 +1,5 @@
-﻿using Nest;
+﻿using DataEntryWebForm.Content.ElasticAPI;
+using Nest;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -11,10 +12,11 @@ namespace DataEntryWebForm.Models
     [ElasticType(Name = "hadoop_metadata")]
     public class HadoopMetaDataModels
     {
-        [ElasticProperty(Name = "_id", NumericType = NumberType.Long)]
-        public string Id { get; set; }
 
-        [Required]
+        /// _id field
+        [ElasticProperty(Name = "_id", NumericType = NumberType.Long, Index = FieldIndexOption.Analyzed)]
+        public int Id { get; set; }
+
         [ElasticProperty(Name = "extract_name")]
         public string ExtractName { get; set; }
 
@@ -45,5 +47,22 @@ namespace DataEntryWebForm.Models
 
         [ElasticProperty(Name = "start_date")]
         public DateTime StartDate { get; set; }
+
+    }
+
+
+    public class EditHadoopDataModels
+    {
+        private ElasticQueries eq = new ElasticQueries();
+
+        // GET: DataEntry
+        public EditHadoopDataModels()
+        {
+            // Id = eq.IndexDetails();
+        }
+
+        public double Id { get; set; }
+        public List<HadoopMetaDataModels> HadoopMetaData { get; set; }
+
     }
 }
