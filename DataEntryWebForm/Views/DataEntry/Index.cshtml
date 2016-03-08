@@ -27,17 +27,17 @@
                 <table id="myDataTable" class="table">
                     <thead>
                         <tr>
-                            <th> @Html.DisplayNameFor(model => model.Id)</th>
+                            @*<th> @Html.DisplayNameFor(model => model.Id)</th>*@
                             <th> @Html.DisplayNameFor(model => model.ExtractName)</th>
-                            <th> @Html.DisplayNameFor(model => model.Description)</th>
                             <th> @Html.DisplayNameFor(model => model.Requestor)</th>
-                            <th> @Html.DisplayNameFor(model => model.RequestorEmail)</th>
-                            <th> @Html.DisplayNameFor(model => model.DataSources)</th>
+                            <th> @Html.DisplayNameFor(model => model.Description)</th>
+                            @*<th> @Html.DisplayNameFor(model => model.RequestorEmail)</th>*@
+                            @*<th> @Html.DisplayNameFor(model => model.DataSources)</th>*@
                             <th> @Html.DisplayNameFor(model => model.DataExtractDetails) </th>
-                            <th> @Html.DisplayNameFor(model => model.ClusterStorageLocation) </th>
-                            <th> @Html.DisplayNameFor(model => model.ClusterStoragePath)</th>
+                            <th width="15%"> ClusterLocation </th>
+                            @*<th> @Html.DisplayNameFor(model => model.ClusterStoragePath)</th>*@
                             <th> @Html.DisplayNameFor(model => model.StartDate) </th>
-                            <th></th>
+                            <th width="15%"></th>
                         </tr>
                     </thead>
 
@@ -45,15 +45,15 @@
                         @foreach (var item in Model)
                         {
                             <tr>
-                                <td> @Html.DisplayFor(modelItem => item.Id)</td>
+                                @*<td> @Html.DisplayFor(modelItem => item.Id)</td>*@
                                 <td> @Html.DisplayFor(modelItem => item.ExtractName)</td>
-                                <td> @Html.DisplayFor(modelItem => item.Description) </td>
                                 <td> @Html.DisplayFor(modelItem => item.Requestor)</td>
-                                <td> @Html.DisplayFor(modelItem => item.RequestorEmail)</td>
-                                <td> @Html.DisplayFor(modelItem => item.DataSources)</td>
+                                <td> @Html.DisplayFor(modelItem => item.Description) </td>
+                                @*<td> @Html.DisplayFor(modelItem => item.RequestorEmail)</td>*@
+                                @*<td> @Html.DisplayFor(modelItem => item.DataSources)</td>*@
                                 <td> @Html.DisplayFor(modelItem => item.DataExtractDetails) </td>
                                 <td> @Html.DisplayFor(modelItem => item.ClusterStorageLocation)</td>
-                                <td> @Html.DisplayFor(modelItem => item.ClusterStoragePath)</td>
+                                @*<td> @Html.DisplayFor(modelItem => item.ClusterStoragePath)</td>*@
                                 <td> @Html.DisplayFor(modelItem => item.StartDate)   </td>
                                 <td>
                                     @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
