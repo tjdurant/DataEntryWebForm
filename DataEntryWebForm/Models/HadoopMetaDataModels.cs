@@ -15,7 +15,7 @@ namespace DataEntryWebForm.Models
 
         /// _id field
         [ElasticProperty(Name = "_id", NumericType = NumberType.Long, Index = FieldIndexOption.Analyzed)]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         [ElasticProperty(Name = "extract_name")]
         public string ExtractName { get; set; }

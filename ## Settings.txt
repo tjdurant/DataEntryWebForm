@@ -1,0 +1,27 @@
+## Settings
+
+User Settings (accessible from the *Preferences/Package Settings/Elasticsearch Client/Settings - User* menu)
+
+*Example:*
+
+```js
+{
+  "base_url": "http://localhost:9200",
+  "index": "blog",
+  "doc_type": "posts",
+  "servers": [
+      {
+          "base_url": "http://localhost:9200",
+          "index": "blog",
+          "doc_type": "posts",
+      },
+      {
+          "base_url": "http://localhost:9200",
+          "index": "twitter",
+          "doc_type": "tweets",
+      }
+  ]
+}
+```
+
+You can switch the server, use ``Elasticsearch: Settings Switch Server`` command.

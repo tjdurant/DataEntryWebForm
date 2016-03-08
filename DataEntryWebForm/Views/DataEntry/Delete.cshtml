@@ -1,0 +1,96 @@
+﻿@model DataEntryWebForm.Models.HadoopMetaDataModels
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>HadoopMetaDataModels</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ExtractName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ExtractName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Requestor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Requestor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RequestorEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RequestorEmail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Request)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Request)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataExtractDetails)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataExtractDetails)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ClusterStorageLocation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClusterStorageLocation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ClusterStoragePath)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClusterStoragePath)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartDate)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
