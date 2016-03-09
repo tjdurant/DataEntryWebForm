@@ -51,13 +51,13 @@ namespace DataEntryWebForm.Content.ElasticAPI
         }
 
 
-        public List<HadoopMetaDataModels> IdDetails(string id)
+        public HadoopMetaDataModels IdDetails(string id)
         {
 
             string id_query = Path.Combine(queryDslPath, "id_query.txt");
 
             // instatiate data objects
-            var idDetailsResult = new List<HadoopMetaDataModels>();
+            var idDetailsResult = new HadoopMetaDataModels();
 
             // read .txt file into string
             string queryString = File.ReadAllText(id_query);
@@ -69,7 +69,21 @@ namespace DataEntryWebForm.Content.ElasticAPI
                 .QueryRaw(queryString)
                 );
 
-            idDetailsResult = searchResult.Documents.ToList();
+            foreach(var item in searchResult.Hits)
+            {
+                idDetailsResult.Id = item.Source.Id;
+                idDetailsResult.ExtractName = item.Source.ExtractName;
+                idDetailsResult.Description = item.Source.Description;
+                idDetailsResult.Requestor = item.Source.Requestor;
+                idDetailsResult.RequestorEmail = item.Source.RequestorEmail;
+                idDetailsResult.Request = item.Source.Request;
+                idDetailsResult.DataSources = item.Source.DataSources;
+                idDetailsResult.DataExtractDetails = item.Source.DataExtractDetails;
+                idDetailsResult.ClusterStorageLocation = item.Source.ClusterStorageLocation;
+                idDetailsResult.ClusterStoragePath = item.Source.ClusterStoragePath;
+                idDetailsResult.StartDate = item.Source.StartDate;
+            }
+
 
             return idDetailsResult;
         }

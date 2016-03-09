@@ -11,6 +11,7 @@ using DataEntryWebForm.DataAccessLayer;
 using DataEntryWebForm.Content.ElasticAPI;
 using System.IO;
 using Nest;
+using Newtonsoft.Json;
 
 namespace DataEntryWebForm.Controllers
 {
@@ -37,6 +38,12 @@ namespace DataEntryWebForm.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
+            //HadoopMetaDataModels model = );
+            //if (model == null)
+            //{
+            //    return HttpNotFound();
+            //}
 
             // This should list the data for the id selected
             return View(eq.IdDetails(id));
