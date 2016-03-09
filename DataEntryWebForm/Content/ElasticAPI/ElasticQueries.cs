@@ -84,7 +84,6 @@ namespace DataEntryWebForm.Content.ElasticAPI
                 idDetailsResult.StartDate = item.Source.StartDate;
             }
 
-
             return idDetailsResult;
         }
     }

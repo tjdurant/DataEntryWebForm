@@ -614,12 +614,13 @@ dd {
     width: 160px;
     overflow: hidden;
     clear: left;
-    text-align: right;
+    text-align: left;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
   .dl-horizontal dd {
     margin-left: 180px;
+    margin-right: 400px;
   }
   .dl-horizontal dd:before,
   .dl-horizontal dd:after {
