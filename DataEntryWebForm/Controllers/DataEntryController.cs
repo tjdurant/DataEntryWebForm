@@ -95,13 +95,7 @@ namespace DataEntryWebForm.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            // Tommy: will have to change this to NEST format.Currently using EF formatting
-            HadoopMetaDataModels hadoopMetaDataModels = db.HadoopMetaDataModels.Find(id);
-            if (hadoopMetaDataModels == null)
-            {
-                return HttpNotFound();
-            }
-            return View(hadoopMetaDataModels);
+            return View(eq.IdDetails(id));
         }
 
         // POST: DataEntry/Edit/5
@@ -111,12 +105,14 @@ namespace DataEntryWebForm.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,ExtractName,Description,Requestor,RequestorEmail,Request,DataExtractDetails,ClusterStorageLocation,ClusterStoragePath,StartDate")] HadoopMetaDataModels hadoopMetaDataModels)
         {
+
+            // instantiate elastic client from data access layer
+            EsClient es = new EsClient();
+
             // system.
             if (ModelState.IsValid)
             {
-                // Tommy: will have to change this to NEST format.Currently using EF formatting
-                db.Entry(hadoopMetaDataModels).State = EntityState.Modified;
-                db.SaveChanges();
+                es.Current.Index<HadoopMetaDataModels>(hadoopMetaDataModels);
                 return RedirectToAction("Index");
             }
             return View(hadoopMetaDataModels);
