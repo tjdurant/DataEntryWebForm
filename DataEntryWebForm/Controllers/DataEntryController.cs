@@ -21,35 +21,23 @@ namespace DataEntryWebForm.Controllers
         private DataEntryWebFormContext db = new DataEntryWebFormContext();
         private ElasticQueries eq = new ElasticQueries();
 
-        // GET: DataEntry
         public ActionResult Index()
         {
             // This should list the data that is in your index
             return View(eq.IndexDetails());
         }
 
-        // GET: DataEntry/Details/5
         public ActionResult Details(string id)
         {
-            // The id is coming from Idex.cshtml item.Id from the details action link. 
-            // Need to figure out how to index/analyze the actual _id or _uid field, and then return it.
-            // Went to go work on search box for documents that can appear on index page. 
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            //HadoopMetaDataModels model = );
-            //if (model == null)
-            //{
-            //    return HttpNotFound();
-            //}
-
-            // This should list the data for the id selected
             return View(eq.IdDetails(id));
         }
 
-        // GET: DataEntry/Create
         public ActionResult Create()
         {
             return View();
@@ -87,7 +75,6 @@ namespace DataEntryWebForm.Controllers
             return View(hadoopMetaDataModels);
         }
 
-        // GET: DataEntry/Edit/5
         public ActionResult Edit(string id)
         {
             if (id == null)
@@ -109,7 +96,6 @@ namespace DataEntryWebForm.Controllers
             // instantiate elastic client from data access layer
             EsClient es = new EsClient();
 
-            // system.
             if (ModelState.IsValid)
             {
                 es.Current.Index<HadoopMetaDataModels>(hadoopMetaDataModels);
@@ -121,28 +107,27 @@ namespace DataEntryWebForm.Controllers
         // GET: DataEntry/Delete/5
         public ActionResult Delete(string id)
         {
+            EsClient es = new EsClient();
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            // Tommy: will have to change this to NEST format. Currently using EF formatting
-            HadoopMetaDataModels hadoopMetaDataModels = db.HadoopMetaDataModels.Find(id);
-            if (hadoopMetaDataModels == null)
-            {
-                return HttpNotFound();
-            }
-            return View(hadoopMetaDataModels);
+            return View(eq.IdDetails(id));
         }
 
-        // POST: DataEntry/Delete/5
+
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            HadoopMetaDataModels hadoopMetaDataModels = db.HadoopMetaDataModels.Find(id);
-            db.HadoopMetaDataModels.Remove(hadoopMetaDataModels);
-            db.SaveChanges();
+            EsClient es = new EsClient();
+
+            var resDel = es.Current.Delete<HadoopMetaDataModels>(d => d
+               .Id(id.ToString())
+               .Index("hadoop_metadata"));
+
             return RedirectToAction("Index");
         }
 
