@@ -723,6 +723,7 @@
     <Content Include="Views\DataEntry\Edit.cshtml" />
     <Content Include="Views\DataEntry\Index.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Html.cshtml" />
+    <Content Include="Views\DataEntry\Search.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -24,6 +24,7 @@ namespace DataEntryWebForm.Models
         [ElasticProperty(Name = "description")]
         public string Description { get; set; }
 
+        // BUG: This is still searchable with query despite the NotAnalyzed
         [AllowHtml]
         [ElasticProperty(Name = "description_html", Index = FieldIndexOption.NotAnalyzed)]
         public string DescriptionHtml { get; set; }
