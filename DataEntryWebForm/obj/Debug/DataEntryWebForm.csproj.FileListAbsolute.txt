@@ -152,3 +152,6 @@ C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\obj\Debug\Da
 C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\obj\Debug\DataEntryWebForm.pdb
 C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\Mvc.JQuery.DataTables.Core.dll
 C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\Mvc.JQuery.DataTables.dll
+C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\HtmlAgilityPack.dll
+C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\HtmlAgilityPack.pdb
+C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\HtmlAgilityPack.xml

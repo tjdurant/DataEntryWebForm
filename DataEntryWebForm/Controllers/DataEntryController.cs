@@ -12,6 +12,7 @@ using DataEntryWebForm.Content.ElasticAPI;
 using System.IO;
 using Nest;
 using Newtonsoft.Json;
+using DataEntryWebForm.Helpers;
 
 namespace DataEntryWebForm.Controllers
 {
@@ -53,6 +54,7 @@ namespace DataEntryWebForm.Controllers
         {
             // instantiate elastic client from data access layer
             EsClient es = new EsClient();
+            TextParseHelper th = new TextParseHelper();
 
             hadoopMetaDataModels.Id = Guid.NewGuid().ToString();
 
@@ -67,11 +69,12 @@ namespace DataEntryWebForm.Controllers
                     .Type<HadoopMetaDataModels>()
                     .Indices("hadoop_metadata"));
 
+            var description = th.StripHtml(hadoopMetaDataModels.DescriptionHtml);
 
+            hadoopMetaDataModels.Description = description;
 
             if (ModelState.IsValid)
             {
-
                 es.Current.Index<HadoopMetaDataModels>(hadoopMetaDataModels);
                 return RedirectToAction("Index");
             }
