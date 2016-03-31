@@ -74,6 +74,7 @@ namespace DataEntryWebForm.Content.ElasticAPI
                 idDetailsResult.Id = item.Source.Id;
                 idDetailsResult.ExtractName = item.Source.ExtractName;
                 idDetailsResult.Description = item.Source.Description;
+                idDetailsResult.DescriptionHtml = item.Source.DescriptionHtml;
                 idDetailsResult.Requestor = item.Source.Requestor;
                 idDetailsResult.RequestorEmail = item.Source.RequestorEmail;
                 idDetailsResult.Request = item.Source.Request;

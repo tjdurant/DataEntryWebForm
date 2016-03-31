@@ -46,9 +46,10 @@ namespace DataEntryWebForm.Controllers
         // POST: DataEntry/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,ExtractName,Description,Requestor,RequestorEmail,DataSources,DataExtractDetails,ClusterStorageLocation,ClusterStoragePath,StartDate")] HadoopMetaDataModels hadoopMetaDataModels)
+        public ActionResult Create([Bind(Include = "Id,ExtractName,Description,DescriptionHtml,Requestor,RequestorEmail,DataSources,DataExtractDetails,ClusterStorageLocation,ClusterStoragePath,StartDate")] HadoopMetaDataModels hadoopMetaDataModels)
         {
             // instantiate elastic client from data access layer
             EsClient es = new EsClient();
@@ -66,8 +67,11 @@ namespace DataEntryWebForm.Controllers
                     .Type<HadoopMetaDataModels>()
                     .Indices("hadoop_metadata"));
 
+
+
             if (ModelState.IsValid)
             {
+
                 es.Current.Index<HadoopMetaDataModels>(hadoopMetaDataModels);
                 return RedirectToAction("Index");
             }

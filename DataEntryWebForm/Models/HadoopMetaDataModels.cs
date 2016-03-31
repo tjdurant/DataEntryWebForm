@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 // Data transfer objects
 namespace DataEntryWebForm.Models
@@ -22,6 +23,10 @@ namespace DataEntryWebForm.Models
 
         [ElasticProperty(Name = "description")]
         public string Description { get; set; }
+
+        [AllowHtml]
+        [ElasticProperty(Name = "description_html")]
+        public string DescriptionHtml { get; set; }
 
         [ElasticProperty(Name = "requestor")]
         public string Requestor { get; set; }

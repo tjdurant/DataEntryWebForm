@@ -15,7 +15,7 @@
         <dd>@Html.DisplayFor(model => model.ExtractName)</dd>
         
         <dt>@Html.DisplayNameFor(model => model.Description)</dt>
-        <dd>@Html.DisplayFor(model => model.Description)</dd>
+        <dd>@Html.Raw(Model.DescriptionHtml)</dd>
 
         <dt>@Html.DisplayNameFor(model => model.Requestor)</dt>
         <dd>@Html.DisplayFor(model => model.Requestor)</dd>
