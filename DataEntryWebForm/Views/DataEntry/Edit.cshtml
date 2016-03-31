@@ -5,7 +5,7 @@
 }
 
 <h2>Edit</h2>
-
+<script src="~/Scripts/ckeditor/ckeditor.js"></script>
 
 @using (Html.BeginForm())
 {
@@ -28,8 +28,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                @Html.TextAreaFor(model => model.DescriptionHtml, new { @class = "ckeditor" })
+                @Html.ValidationMessageFor(model => model.DescriptionHtml, "", new { @class = "text-danger" })
             </div>
         </div>
 
