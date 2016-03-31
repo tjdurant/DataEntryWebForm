@@ -25,7 +25,7 @@ namespace DataEntryWebForm.Models
         public string Description { get; set; }
 
         [AllowHtml]
-        [ElasticProperty(Name = "description_html")]
+        [ElasticProperty(Name = "description_html", Index = FieldIndexOption.NotAnalyzed)]
         public string DescriptionHtml { get; set; }
 
         [ElasticProperty(Name = "requestor")]
