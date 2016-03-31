@@ -138,9 +138,18 @@ namespace DataEntryWebForm.Controllers
             return RedirectToAction("Index");
         }
 
+
         public ActionResult Search()
         {
             return View();
+        }
+
+
+        public ActionResult Result(string query)
+        {
+
+            // This should list the data that is in your index
+            return View(eq.IndexDetails());
         }
 
         protected override void Dispose(bool disposing)
