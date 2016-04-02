@@ -147,7 +147,6 @@ C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\Microsof
 C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\Microsoft.Owin.Security.Google.xml
 C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\obj\Debug\DataEntryWebForm.csprojResolveAssemblyReference.cache
 C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\obj\Debug\DataEntryWebForm.dll
 C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\obj\Debug\DataEntryWebForm.pdb
 C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\Mvc.JQuery.DataTables.Core.dll
@@ -155,3 +154,4 @@ C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\Mvc.JQue
 C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\HtmlAgilityPack.dll
 C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\HtmlAgilityPack.pdb
 C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\HtmlAgilityPack.xml
+C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\obj\Debug\DataEntryWebForm.csprojResolveAssemblyReference.cache

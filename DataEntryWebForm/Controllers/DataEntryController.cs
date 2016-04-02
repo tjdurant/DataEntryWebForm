@@ -144,12 +144,20 @@ namespace DataEntryWebForm.Controllers
             return View();
         }
 
-
-        public ActionResult Result(string query)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Search(SearchElasticModels model)
         {
+            var searchResults = new List<HadoopMetaDataModels>();
+            searchResults = eq.SearchElastic(model.Query);
+
+            if(searchResults.Count() == 0)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
 
             // This should list the data that is in your index
-            return View(eq.IndexDetails());
+            return View();
         }
 
         protected override void Dispose(bool disposing)

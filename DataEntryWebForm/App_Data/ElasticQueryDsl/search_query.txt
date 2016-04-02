@@ -1,0 +1,11 @@
+﻿{
+  
+    "multi_match": {
+      "query": "***query",
+      "fields": [
+        "description",
+        "requestor"
+      ]
+    }
+  }
+}

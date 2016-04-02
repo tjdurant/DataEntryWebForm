@@ -1,4 +1,4 @@
-﻿@model DataEntryWebForm.Models.HadoopMetaDataModels
+﻿@model DataEntryWebForm.Models.SearchElasticModels
 
 @{
     ViewBag.Title = "Search";
@@ -17,10 +17,10 @@
 
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Query, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.DescriptionHtml, new { @class = "ckeditor" })
-                @Html.ValidationMessageFor(model => model.DescriptionHtml, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(model => model.Query)
+                @Html.ValidationMessageFor(model => model.Query, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -32,6 +32,7 @@
         </div>
     </div>
 }
+
 
 <div>
     @Html.ActionLink("Back to List", "Index")

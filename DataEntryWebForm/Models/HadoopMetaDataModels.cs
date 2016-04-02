@@ -71,4 +71,11 @@ namespace DataEntryWebForm.Models
         public List<HadoopMetaDataModels> HadoopMetaData { get; set; }
 
     }
+
+    public class SearchElasticModels
+    {
+
+        public string Query { get; set; }
+
+    }
 }

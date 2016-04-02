@@ -1,0 +1,11 @@
+{
+  "query": {
+    "filtered": {
+      "query": {
+        "term": {
+          "description": "***query"
+        }
+      }
+    }
+  }
+}

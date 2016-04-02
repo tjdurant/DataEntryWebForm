@@ -52,7 +52,8 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm("Delete", "DataEntry", FormMethod.Post))
+    { 
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">

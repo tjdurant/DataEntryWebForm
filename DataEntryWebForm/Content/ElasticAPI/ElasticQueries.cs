@@ -87,5 +87,42 @@ namespace DataEntryWebForm.Content.ElasticAPI
 
             return idDetailsResult;
         }
+
+        public List<HadoopMetaDataModels> SearchElastic(string query)
+        {
+
+            // instatiate data objects
+            var searchResults = new List<HadoopMetaDataModels>();
+
+            // instantiate .txt file
+            string search = Path.Combine(queryDslPath, "search_query.txt");
+
+            // read .txt file into string
+            string searchString = File.ReadAllText(search);
+
+            searchString = searchString.Replace("***query", query);
+
+
+            // run elastic search with raw JSON query string
+            var elasticResult = ec.Current.Search<HadoopMetaDataModels>(s => s
+                .QueryRaw(searchString)
+                );
+
+            var list = elasticResult.Hits.Select(h =>
+            {
+                return h.Source;
+            }).ToList();
+
+            //var results = searchResult.Hits.Select(hit =>
+            //{
+            //    var run = hit.Source;
+            //    run.Id = hit.Id;
+            //    return run;
+            //});
+
+            searchResults = elasticResult.Documents.ToList();
+
+            return searchResults;
+        }
     }
 }
