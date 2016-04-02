@@ -725,6 +725,7 @@
     <Content Include="Views\DataEntry\Index.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Html.cshtml" />
     <Content Include="Views\DataEntry\Search.cshtml" />
+    <Content Include="Views\DataEntry\Results.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

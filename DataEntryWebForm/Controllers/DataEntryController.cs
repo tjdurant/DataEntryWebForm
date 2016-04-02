@@ -153,12 +153,22 @@ namespace DataEntryWebForm.Controllers
 
             if(searchResults.Count() == 0)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Search");
             }
 
             // This should list the data that is in your index
-            return View();
+            return View("Results", searchResults );
         }
+
+        public ActionResult Results(List<HadoopMetaDataModels> searchResults)
+        {
+            //var result = new List<HadoopMetaDataModels>();
+            //result = searchResults;
+
+            return View(searchResults);
+        }
+
+
 
         protected override void Dispose(bool disposing)
         {

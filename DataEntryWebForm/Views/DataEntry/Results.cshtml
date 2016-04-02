@@ -1,0 +1,122 @@
+﻿@model IEnumerable<DataEntryWebForm.Models.HadoopMetaDataModels>
+
+
+@{
+    ViewBag.Title = "Results";
+}
+
+<h2>Results</h2>
+
+
+
+@*@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Query, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Query)
+                @Html.ValidationMessageFor(model => model.Query, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Search" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}*@
+
+
+<div class="container-fluid">
+    <!-- Page Header -->
+    <div class="page-header page-header-block">
+        <div class="page-header-section">
+            <h2 class="title semibold">@ViewBag.Title</h2>
+        </div>
+    </div>
+
+    <p>
+        @Html.ActionLink("Create New", "Create") |
+        @Html.ActionLink("Search Meta-Data", "Search")
+    </p>
+    <!-- START row -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Hadoop meta-data</h3>
+                </div>
+                <table id="myDataTable" class="table">
+                    <thead>
+                        <tr>
+                            @*<th> @Html.DisplayNameFor(model => model.Id)</th>*@
+                            <th> @Html.DisplayNameFor(model => model.ExtractName)</th>
+                            <th> @Html.DisplayNameFor(model => model.Requestor)</th>
+                            <th> @Html.DisplayNameFor(model => model.Description)</th>
+                            @*<th> @Html.DisplayNameFor(model => model.RequestorEmail)</th>*@
+                            @*<th> @Html.DisplayNameFor(model => model.DataSources)</th>*@
+                            <th> @Html.DisplayNameFor(model => model.DataExtractDetails) </th>
+                            <th width="15%"> ClusterLocation </th>
+                            @*<th> @Html.DisplayNameFor(model => model.ClusterStoragePath)</th>*@
+                            <th> @Html.DisplayNameFor(model => model.StartDate) </th>
+                            <th width="15%"></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                @*<td> @Html.DisplayFor(modelItem => item.Id)</td>*@
+                                <td> @Html.DisplayFor(modelItem => item.ExtractName)</td>
+                                <td> @Html.DisplayFor(modelItem => item.Requestor)</td>
+                                <td> @Html.DisplayFor(modelItem => item.Description) </td>
+                                @*<td> @Html.DisplayFor(modelItem => item.RequestorEmail)</td>*@
+                                @*<td> @Html.DisplayFor(modelItem => item.DataSources)</td>*@
+                                <td> @Html.DisplayFor(modelItem => item.DataExtractDetails) </td>
+                                <td> @Html.DisplayFor(modelItem => item.ClusterStorageLocation)</td>
+                                @*<td> @Html.DisplayFor(modelItem => item.ClusterStoragePath)</td>*@
+                                <td> @Html.DisplayFor(modelItem => item.StartDate)   </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!--/ END row -->
+</div>
+
+@section scripts{
+    <script src="~/Scripts/jquery-2.1.4.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/DataTables/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script src="~/scripts/bootstrap.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+            $('#myDataTable').dataTable();
+    </script>
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+
+
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+

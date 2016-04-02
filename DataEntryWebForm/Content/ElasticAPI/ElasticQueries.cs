@@ -93,7 +93,7 @@ namespace DataEntryWebForm.Content.ElasticAPI
 
             // instatiate data objects
             var searchResults = new List<HadoopMetaDataModels>();
-
+            
             // instantiate .txt file
             string search = Path.Combine(queryDslPath, "search_query.txt");
 
