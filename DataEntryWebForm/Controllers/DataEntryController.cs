@@ -88,13 +88,8 @@ namespace DataEntryWebForm.Controllers
             // set description(without html) to model.Description 
             hadoopMetaDataModels.Description = description;
 
-            // for testing
-            if (hadoopMetaDataModels.ClusterStorageLocation == null)
-            {
-                return RedirectToAction("Create");
-            }
-
-            ModelState.SetModelValue("Description", new ValueProviderResult(description, "", CultureInfo.InvariantCulture));
+ 
+            //ModelState.SetModelValue("Description", new ValueProviderResult(description, "", CultureInfo.InvariantCulture));
 
             if (ModelState.IsValid)
             {
@@ -146,6 +141,7 @@ namespace DataEntryWebForm.Controllers
                 es.Current.Index<HadoopMetaDataModels>(hadoopMetaDataModels);
                 return RedirectToAction("Index");
             }
+
             return View(hadoopMetaDataModels);
         }
 
