@@ -22,12 +22,16 @@ namespace DataEntryWebForm.Controllers
         private DataEntryWebFormContext db = new DataEntryWebFormContext();
         private ElasticQueries eq = new ElasticQueries();
 
+        
+        [HttpGet]
         public ActionResult Index()
         {
-            // This should list the data that is in your index
+            // List all data from default index
             return View(eq.IndexDetails());
         }
 
+
+        [HttpGet]
         public ActionResult Details(string id)
         {
 
@@ -36,18 +40,24 @@ namespace DataEntryWebForm.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
+            // list details of document with specific id
             return View(eq.IdDetails(id));
         }
 
+
+        [HttpGet]
         public ActionResult Create()
         {
-            return View();
+
+            var model = new HadoopMetaDataModels();
+
+            model.StorageLocations = model.getStorageLocations();
+
+            return View(model);
         }
 
-        // POST: DataEntry/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        
+
+        // may need to add 'IEnumerable<string> SelectItems' in parameters http://dotnetvisio.blogspot.com/2014/01/get-values-of-multiselect-listbox-in.html
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,ExtractName,Description,DescriptionHtml,Requestor,RequestorEmail,DataSources,DataExtractDetails,ClusterStorageLocation,ClusterStoragePath,StartDate")] HadoopMetaDataModels hadoopMetaDataModels)
@@ -56,6 +66,7 @@ namespace DataEntryWebForm.Controllers
             EsClient es = new EsClient();
             TextParseHelper th = new TextParseHelper();
 
+            // 
             hadoopMetaDataModels.Id = Guid.NewGuid().ToString();
 
             // create index; index doesn't exist
@@ -69,8 +80,10 @@ namespace DataEntryWebForm.Controllers
                     .Type<HadoopMetaDataModels>()
                     .Indices("hadoop_metadata"));
 
+            // strip html from ckeditor description input
             var description = th.StripHtml(hadoopMetaDataModels.DescriptionHtml);
-
+            
+            // set description(without html) to model.Description 
             hadoopMetaDataModels.Description = description;
 
             if (ModelState.IsValid)
@@ -82,6 +95,7 @@ namespace DataEntryWebForm.Controllers
             return View(hadoopMetaDataModels);
         }
 
+        [HttpGet]
         public ActionResult Edit(string id)
         {
             if (id == null)
@@ -92,12 +106,12 @@ namespace DataEntryWebForm.Controllers
             return View(eq.IdDetails(id));
         }
 
-        // POST: DataEntry/Edit/5
+
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,ExtractName,Description,Requestor,RequestorEmail,Request,DataExtractDetails,ClusterStorageLocation,ClusterStoragePath,StartDate")] HadoopMetaDataModels hadoopMetaDataModels)
+        public ActionResult Edit([Bind(Include = "Id,ExtractName,Description,Requestor,RequestorEmail,Request,DataExtractDetails,ClusterStorageLocation,StorageLocations,ClusterStoragePath,StartDate")] HadoopMetaDataModels hadoopMetaDataModels)
         {
 
             // instantiate elastic client from data access layer
@@ -111,7 +125,7 @@ namespace DataEntryWebForm.Controllers
             return View(hadoopMetaDataModels);
         }
 
-        // GET: DataEntry/Delete/5
+        [HttpGet]
         public ActionResult Delete(string id)
         {
             EsClient es = new EsClient();
@@ -139,10 +153,12 @@ namespace DataEntryWebForm.Controllers
         }
 
 
+        [HttpGet]
         public ActionResult Search()
         {
             return View();
         }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -160,6 +176,8 @@ namespace DataEntryWebForm.Controllers
             return View("Results", searchResults );
         }
 
+
+        [HttpGet]
         public ActionResult Results(List<HadoopMetaDataModels> searchResults)
         {
             //var result = new List<HadoopMetaDataModels>();
@@ -169,7 +187,7 @@ namespace DataEntryWebForm.Controllers
         }
 
 
-
+        // Don't know what this does.
         protected override void Dispose(bool disposing)
         {
             if (disposing)

@@ -48,6 +48,23 @@ namespace DataEntryWebForm.Models
         [ElasticProperty(Name = "storage_location")]
         public string ClusterStorageLocation { get; set; }
 
+        [ElasticProperty(Name = "storage_locations")]
+        public IEnumerable<SelectListItem> StorageLocations { get; set; }
+
+        // Define the list which you have to show in ListBox List
+        public IEnumerable<SelectListItem> getStorageLocations()
+        {
+            List<SelectListItem> myList = new List<SelectListItem>();
+            var data = new[]{
+                 new SelectListItem{ Value="1",Text="HDFS"},
+                 new SelectListItem{ Value="2",Text="Elastic"},
+                 new SelectListItem{ Value="2",Text="HBase"},
+                 new SelectListItem{ Value="2",Text="Other"},
+             };
+            myList = data.ToList();
+            return myList;
+        }
+
         [ElasticProperty(Name = "storage_path")]
         public string ClusterStoragePath { get; set; }
 

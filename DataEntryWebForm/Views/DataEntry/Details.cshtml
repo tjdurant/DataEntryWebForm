@@ -4,11 +4,10 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details For:</h2>
-
+<h2>Details For: @Html.DisplayFor(model => model.ExtractName)</h2>
 
 <div>
-    <h4>@Html.DisplayFor(model => model.ExtractName)</h4>
+    
     <hr />
     <dl class="dl-horizontal">
         <dt>@Html.DisplayNameFor(model => model.ExtractName)</dt>

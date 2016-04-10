@@ -204,6 +204,7 @@
     </Compile>
     <Compile Include="Helpers\TextParseHelper.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ClusterStorageModels.cs" />
     <Compile Include="Models\Constants.cs" />
     <Compile Include="Models\DataEntryWebFormContext.cs" />
     <Compile Include="Models\HadoopMetaDataModels.cs" />
