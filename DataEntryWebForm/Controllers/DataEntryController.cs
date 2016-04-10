@@ -59,11 +59,11 @@ namespace DataEntryWebForm.Controllers
         }
 
 
-        // may need to add 'IEnumerable<string> SelectItems' in parameters http://dotnetvisio.blogspot.com/2014/01/get-values-of-multiselect-listbox-in.html
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,ExtractName,Description,DescriptionHtml,Requestor,RequestorEmail,DataSources,DataExtractDetails,ClusterStorageLocation,ClusterStoragePath,StartDate")] HadoopMetaDataModels hadoopMetaDataModels)
         {
+
             // instantiate elastic client from data access layer
             EsClient es = new EsClient();
             TextParseHelper th = new TextParseHelper();
@@ -82,12 +82,22 @@ namespace DataEntryWebForm.Controllers
                     .Type<HadoopMetaDataModels>()
                     .Indices("hadoop_metadata"));
 
+            // Forces user to enter into ckditor field
+            if (hadoopMetaDataModels.DescriptionHtml == null)
+            {
+                return RedirectToAction("Create");
+            }
+
             // strip html from ckeditor description input
             var description = th.StripHtml(hadoopMetaDataModels.DescriptionHtml);
             
             // set description(without html) to model.Description 
             hadoopMetaDataModels.Description = description;
-
+            // Forces user to enter into ckditor field
+            if (hadoopMetaDataModels.DescriptionHtml == null)
+            {
+                return RedirectToAction("Create");
+            }
 
             //ModelState.SetModelValue("Description", new ValueProviderResult(description, "", CultureInfo.InvariantCulture));
             ModelState.Clear();
@@ -106,6 +116,7 @@ namespace DataEntryWebForm.Controllers
 
             var model = new HadoopMetaDataModels();
 
+            // populates SelectListItem 
             model.StorageLocations = model.getStorageLocations();
 
             if (id == null)
@@ -129,6 +140,12 @@ namespace DataEntryWebForm.Controllers
 
             // instantiate textParseHelper
             TextParseHelper th = new TextParseHelper();
+
+            // Forces user to enter into ckditor field
+            if (hadoopMetaDataModels.DescriptionHtml == null)
+            {
+                return RedirectToAction("Edit");
+            }
 
             // strip html from ckeditor description input
             var description = th.StripHtml(hadoopMetaDataModels.DescriptionHtml);

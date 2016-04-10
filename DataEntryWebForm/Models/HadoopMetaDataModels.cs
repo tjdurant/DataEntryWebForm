@@ -22,12 +22,12 @@ namespace DataEntryWebForm.Models
         [ElasticProperty(Name = "extract_name")]
         public string ExtractName { get; set; }
 
-        [Required(ErrorMessage = "Field Required")]
         [ElasticProperty(Name = "description")]
         public string Description { get; set; }
 
         // BUG: This is still searchable with query despite the NotAnalyzed
         [AllowHtml]
+        [Required(ErrorMessage = "Field Required")]
         [ElasticProperty(Name = "description_html", Index = FieldIndexOption.NotAnalyzed)]
         public string DescriptionHtml { get; set; }
 
