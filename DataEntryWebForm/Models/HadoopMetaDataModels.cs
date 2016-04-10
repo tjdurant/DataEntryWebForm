@@ -46,7 +46,7 @@ namespace DataEntryWebForm.Models
 
         // select box; hdfs, hbase, elastic, other
         [ElasticProperty(Name = "storage_location")]
-        public string ClusterStorageLocation { get; set; }
+        public List<string> ClusterStorageLocation { get; set; }
 
         [ElasticProperty(Name = "storage_locations")]
         public IEnumerable<SelectListItem> StorageLocations { get; set; }
