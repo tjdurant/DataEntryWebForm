@@ -51,6 +51,7 @@ namespace DataEntryWebForm.Controllers
 
             var model = new HadoopMetaDataModels();
 
+            // populates list for ListBoxFor from a method within the HaddopMetaDataModels
             model.StorageLocations = model.getStorageLocations();
 
             return View(model);
@@ -105,6 +106,11 @@ namespace DataEntryWebForm.Controllers
         [HttpGet]
         public ActionResult Edit(string id)
         {
+
+            var model = new HadoopMetaDataModels();
+
+            model.StorageLocations = model.getStorageLocations();
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -118,7 +124,7 @@ namespace DataEntryWebForm.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,ExtractName,Description,Requestor,RequestorEmail,Request,DataExtractDetails,ClusterStorageLocation,StorageLocations,ClusterStoragePath,StartDate")] HadoopMetaDataModels hadoopMetaDataModels)
+        public ActionResult Edit([Bind(Include = "Id,ExtractName,Description,Requestor,RequestorEmail,Request,DataExtractDetails,ClusterStorageLocation,ClusterStoragePath,StartDate")] HadoopMetaDataModels hadoopMetaDataModels)
         {
 
             // instantiate elastic client from data access layer
