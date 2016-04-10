@@ -13,6 +13,7 @@ using System.IO;
 using Nest;
 using Newtonsoft.Json;
 using DataEntryWebForm.Helpers;
+using System.Globalization;
 
 namespace DataEntryWebForm.Controllers
 {
@@ -93,6 +94,7 @@ namespace DataEntryWebForm.Controllers
                 return RedirectToAction("Create");
             }
 
+            ModelState.SetModelValue("Description", new ValueProviderResult(description, "", CultureInfo.InvariantCulture));
 
             if (ModelState.IsValid)
             {

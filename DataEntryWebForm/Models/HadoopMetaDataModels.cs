@@ -18,11 +18,11 @@ namespace DataEntryWebForm.Models
         [ElasticProperty(Name = "Id")]
         public string Id { get; set; }
 
-        //[Required(ErrorMessage = "Field Required")]
+        [Required(ErrorMessage = "Field Required")]
         [ElasticProperty(Name = "extract_name")]
         public string ExtractName { get; set; }
 
-        //[Required(ErrorMessage = "Field Required")]
+        [Required(ErrorMessage = "Field Required")]
         [ElasticProperty(Name = "description")]
         public string Description { get; set; }
 
