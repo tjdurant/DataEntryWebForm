@@ -29,11 +29,13 @@
         <dd>@Html.DisplayFor(model => model.DataExtractDetails)</dd>
 
         <dt>Cluster Location</dt>
-        <dd>@Html.DisplayFor(model => model.ClusterStorageLocation)</dd>
-
+        @foreach (var course in Model.ClusterStorageLocation)
+        {
+            <dd>@Html.DisplayFor(x => course)</dd>
+        }
         <dt>Cluster Path</dt>
         <dd>@Html.DisplayFor(model => model.ClusterStoragePath)</dd>
-
+              
         <dt>@Html.DisplayNameFor(model => model.StartDate)</dt>
         <dd>@Html.DisplayFor(model => model.StartDate)</dd>
 
