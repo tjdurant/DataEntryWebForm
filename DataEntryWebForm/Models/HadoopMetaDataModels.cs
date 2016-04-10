@@ -22,7 +22,7 @@ namespace DataEntryWebForm.Models
         [ElasticProperty(Name = "extract_name")]
         public string ExtractName { get; set; }
 
-        // cannot put required here or it breaks the modelstate.isvalid statement in the controllers of edit and create
+        [Required(ErrorMessage = "Field Required")]
         [ElasticProperty(Name = "description")]
         public string Description { get; set; }
 

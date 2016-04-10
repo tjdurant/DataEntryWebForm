@@ -88,9 +88,9 @@ namespace DataEntryWebForm.Controllers
             // set description(without html) to model.Description 
             hadoopMetaDataModels.Description = description;
 
- 
-            //ModelState.SetModelValue("Description", new ValueProviderResult(description, "", CultureInfo.InvariantCulture));
 
+            //ModelState.SetModelValue("Description", new ValueProviderResult(description, "", CultureInfo.InvariantCulture));
+            ModelState.Clear();
             if (ModelState.IsValid)
             {
                 es.Current.Index<HadoopMetaDataModels>(hadoopMetaDataModels);
@@ -136,6 +136,7 @@ namespace DataEntryWebForm.Controllers
             // set description(without html) to model.Description 
             hadoopMetaDataModels.Description = description;
 
+            ModelState.Clear();
             if (ModelState.IsValid)
             {
                 es.Current.Index<HadoopMetaDataModels>(hadoopMetaDataModels);
