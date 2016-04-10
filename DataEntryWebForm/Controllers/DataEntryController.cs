@@ -124,11 +124,20 @@ namespace DataEntryWebForm.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,ExtractName,Description,Requestor,RequestorEmail,Request,DataExtractDetails,ClusterStorageLocation,ClusterStoragePath,StartDate")] HadoopMetaDataModels hadoopMetaDataModels)
+        public ActionResult Edit([Bind(Include = "Id,ExtractName,Description,DescriptionHtml,Requestor,RequestorEmail,Request,DataExtractDetails,ClusterStorageLocation,ClusterStoragePath,StartDate")] HadoopMetaDataModels hadoopMetaDataModels)
         {
 
             // instantiate elastic client from data access layer
             EsClient es = new EsClient();
+
+            // instantiate textParseHelper
+            TextParseHelper th = new TextParseHelper();
+
+            // strip html from ckeditor description input
+            var description = th.StripHtml(hadoopMetaDataModels.DescriptionHtml);
+
+            // set description(without html) to model.Description 
+            hadoopMetaDataModels.Description = description;
 
             if (ModelState.IsValid)
             {
