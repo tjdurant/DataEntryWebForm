@@ -86,6 +86,13 @@ namespace DataEntryWebForm.Controllers
             // set description(without html) to model.Description 
             hadoopMetaDataModels.Description = description;
 
+            // for testing
+            if (hadoopMetaDataModels.ClusterStorageLocation == null)
+            {
+                return RedirectToAction("Create");
+            }
+
+
             if (ModelState.IsValid)
             {
                 es.Current.Index<HadoopMetaDataModels>(hadoopMetaDataModels);

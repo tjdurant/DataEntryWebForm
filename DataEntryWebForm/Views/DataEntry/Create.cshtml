@@ -66,7 +66,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ClusterStorageLocation, htmlAttributes: new { @class = "control-label Location   col-md-2" })
             <div class="col-md-10">
-                @Html.ListBoxFor(x => x.ClusterStorageLocation, Model.StorageLocations, new { size = 5 })
+                @Html.ListBoxFor(x => x.ClusterStorageLocation, new MultiSelectList(Model.StorageLocations, "Text", "Text", Model.StorageLocations), new { size = 6, id = "itemsList" })
                 @Html.ValidationMessageFor(model => model.ClusterStorageLocation, "", new { @class = "text-danger" })
             </div>
         </div>
