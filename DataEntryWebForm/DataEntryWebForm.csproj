@@ -197,7 +197,6 @@
     <Compile Include="Controllers\DataEntryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="DataAccessLayer\DataEntryContext.cs" />
     <Compile Include="DataAccessLayer\ElasticClient.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
