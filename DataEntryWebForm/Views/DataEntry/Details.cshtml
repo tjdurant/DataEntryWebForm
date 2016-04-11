@@ -7,8 +7,7 @@
 <h2>Details For: @Html.DisplayFor(model => model.ExtractName)</h2>
 
 <div>
-    
-    <hr />
+    <hr style="height:1px; border:none; color:#333; background-color:#333;" />
     <dl class="dl-horizontal">
         <dt>@Html.DisplayNameFor(model => model.ExtractName)</dt>
         <dd>@Html.DisplayFor(model => model.ExtractName)</dd>
@@ -40,6 +39,7 @@
         <dd>@Html.DisplayFor(model => model.StartDate)</dd>
 
     </dl>
+    <hr style="height:1px; border:none; color:#333; background-color:#333;" />
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |

@@ -5,7 +5,7 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<h2>Edit: @Html.DisplayFor(model => model.ExtractName)</h2>
 <script src="~/Scripts/ckeditor/ckeditor.js"></script>
 
 @using (Html.BeginForm())
@@ -13,8 +13,8 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>HadoopMetaDataModels</h4>
-        <hr />
+        
+        <hr style="height:1px; border:none; color:#333; background-color:#333;" />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
 
@@ -95,6 +95,7 @@
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
+        <hr style="height:1px; border:none; color:#333; background-color:#333;" />
     </div>
 }
 
