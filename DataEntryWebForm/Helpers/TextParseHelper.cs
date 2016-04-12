@@ -6,10 +6,15 @@ using System.Web;
 
 namespace DataEntryWebForm.Helpers
 {
-    public class TextParseHelper
+    public static class TextParseHelper
     {
-        public string StripHtml(string html)
+        public static string StripHtml(string html)
         {
+            if (html == null || string.IsNullOrEmpty(html))
+            {
+                return "";
+            }
+
             var htmlDoc = new HtmlDocument();
 
             // load a string

@@ -20,7 +20,7 @@ namespace DataEntryWebForm.Controllers
 
     public class DataEntryController : Controller
     {
-        private DataEntryWebFormContext db = new DataEntryWebFormContext();
+        
         private ElasticQueries eq = new ElasticQueries();
 
         
@@ -66,7 +66,6 @@ namespace DataEntryWebForm.Controllers
 
             // instantiate elastic client from data access layer
             EsClient es = new EsClient();
-            TextParseHelper th = new TextParseHelper();
 
             // 
             hadoopMetaDataModels.Id = Guid.NewGuid().ToString();
@@ -81,23 +80,9 @@ namespace DataEntryWebForm.Controllers
                 m.MapFromAttributes()
                     .Type<HadoopMetaDataModels>()
                     .Indices("hadoop_metadata"));
-
-            // Forces user to enter into ckditor field
-            if (hadoopMetaDataModels.DescriptionHtml == null)
-            {
-                return RedirectToAction("Create");
-            }
-
-            // strip html from ckeditor description input
-            var description = th.StripHtml(hadoopMetaDataModels.DescriptionHtml);
             
             // set description(without html) to model.Description 
-            hadoopMetaDataModels.Description = description;
-            // Forces user to enter into ckditor field
-            if (hadoopMetaDataModels.DescriptionHtml == null)
-            {
-                return RedirectToAction("Create");
-            }
+            hadoopMetaDataModels.Description = TextParseHelper.StripHtml(hadoopMetaDataModels.DescriptionHtml);
 
             //ModelState.SetModelValue("Description", new ValueProviderResult(description, "", CultureInfo.InvariantCulture));
             ModelState.Clear();
@@ -138,20 +123,8 @@ namespace DataEntryWebForm.Controllers
             // instantiate elastic client from data access layer
             EsClient es = new EsClient();
 
-            // instantiate textParseHelper
-            TextParseHelper th = new TextParseHelper();
-
-            // Forces user to enter into ckditor field
-            if (hadoopMetaDataModels.DescriptionHtml == null)
-            {
-                return RedirectToAction("Edit");
-            }
-
-            // strip html from ckeditor description input
-            var description = th.StripHtml(hadoopMetaDataModels.DescriptionHtml);
-
             // set description(without html) to model.Description 
-            hadoopMetaDataModels.Description = description;
+            hadoopMetaDataModels.Description = TextParseHelper.StripHtml(hadoopMetaDataModels.DescriptionHtml);
 
             ModelState.Clear();
             if (ModelState.IsValid)
@@ -222,17 +195,6 @@ namespace DataEntryWebForm.Controllers
             //result = searchResults;
 
             return View(searchResults);
-        }
-
-
-        // Don't know what this does.
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

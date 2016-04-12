@@ -206,7 +206,6 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ClusterStorageModels.cs" />
     <Compile Include="Models\Constants.cs" />
-    <Compile Include="Models\DataEntryWebFormContext.cs" />
     <Compile Include="Models\HadoopMetaDataModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
