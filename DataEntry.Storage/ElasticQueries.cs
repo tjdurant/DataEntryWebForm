@@ -1,35 +1,32 @@
-﻿using DataEntryWebForm.DataAccessLayer;
-using DataEntryWebForm.Models;
-using Nest;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Web;
+using DataEntry.Storage.Documents;
 
-namespace DataEntryWebForm.Content.ElasticAPI
+namespace DataEntry.Storage
 {
     public class ElasticQueries : EsClient
     {
         // instantiate connection object
-        private EsClient ec = new EsClient();
+        private readonly EsClient _ec = new EsClient();
 
         // set queryDsl path
-        private string queryDslPath = HttpContext.Current.Server.MapPath(@"~\App_Data\ElasticQueryDsl");
+        private readonly string _queryDslPath = HttpContext.Current.Server.MapPath(@"~\App_Data\ElasticQueryDsl");
 
         public List<HadoopMetaDataModels> IndexDetails()
         {
-
-            string details_index = Path.Combine(queryDslPath, "details_index.txt");
-
             // instatiate data objects
             var indexDetails = new List<HadoopMetaDataModels>();
 
-            // read .txt file into string
-            string queryString = File.ReadAllText(details_index);
+            // combine path and read .txt file into string
+            var detailsIndex = Path.Combine(_queryDslPath, "details_index.txt");
+            var queryString = File.ReadAllText(detailsIndex);
 
             // run elastic search with raw JSON query string
-            var searchResult = ec.Current.Search<HadoopMetaDataModels>(s => s
+            var searchResult = _ec.Current.Search<HadoopMetaDataModels>(s => s
                 .QueryRaw(queryString)
                 );
 
@@ -45,7 +42,7 @@ namespace DataEntryWebForm.Content.ElasticAPI
             //    return run;
             //});
 
-            indexDetails = searchResult.Documents.ToList();
+            indexDetails = Enumerable.ToList(searchResult.Documents);
             
             return indexDetails;
         }
@@ -54,18 +51,18 @@ namespace DataEntryWebForm.Content.ElasticAPI
         public HadoopMetaDataModels IdDetails(string id)
         {
 
-            string id_query = Path.Combine(queryDslPath, "id_query.txt");
+            string idQuery = Path.Combine(_queryDslPath, "id_query.txt");
 
             // instatiate data objects
             var idDetailsResult = new HadoopMetaDataModels();
 
             // read .txt file into string
-            string queryString = File.ReadAllText(id_query);
+            string queryString = File.ReadAllText(idQuery);
 
             queryString = queryString.Replace("***id", id);
 
             // run elastic search with raw JSON query string
-            var searchResult = ec.Current.Search<HadoopMetaDataModels>(s => s
+            var searchResult = _ec.Current.Search<HadoopMetaDataModels>(s => s
                 .QueryRaw(queryString)
                 );
 
@@ -95,7 +92,7 @@ namespace DataEntryWebForm.Content.ElasticAPI
             var searchResults = new List<HadoopMetaDataModels>();
             
             // instantiate .txt file
-            string search = Path.Combine(queryDslPath, "search_query.txt");
+            string search = Path.Combine(_queryDslPath, "search_query.txt");
 
             // read .txt file into string
             string searchString = File.ReadAllText(search);
@@ -104,7 +101,7 @@ namespace DataEntryWebForm.Content.ElasticAPI
 
 
             // run elastic search with raw JSON query string
-            var elasticResult = ec.Current.Search<HadoopMetaDataModels>(s => s
+            var elasticResult = _ec.Current.Search<HadoopMetaDataModels>(s => s
                 .QueryRaw(searchString)
                 );
 
@@ -120,7 +117,7 @@ namespace DataEntryWebForm.Content.ElasticAPI
             //    return run;
             //});
 
-            searchResults = elasticResult.Documents.ToList();
+            searchResults = Enumerable.ToList(elasticResult.Documents);
 
             return searchResults;
         }

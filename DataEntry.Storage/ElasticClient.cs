@@ -1,17 +1,15 @@
-﻿using DataEntryWebForm.Models;
+﻿using System;
+using System.Configuration;
+using DataEntry.Storage.Documents;
 using Nest;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
-namespace DataEntryWebForm.DataAccessLayer
+namespace DataEntry.Storage
 {
     public class EsClient
     {
 
         /// URI 
-        private const string elastic_uri = "http://localhost:9200";
+        private const string ElasticUri = "http://localhost:9200";
 
         /// Elastic settings
         private ConnectionSettings _settings;
@@ -24,11 +22,11 @@ namespace DataEntryWebForm.DataAccessLayer
         /// Constructor
         public EsClient()
         {
-            var node = new Uri(elastic_uri);
+            var node = new Uri(ElasticUri);
 
             _settings = new ConnectionSettings(node);
-            _settings.SetDefaultIndex(Constants.DEFAULT_INDEX);
-            _settings.MapDefaultTypeNames(m => m.Add(typeof(HadoopMetaDataModels), Constants.DEFAULT_INDEX_TYPE));
+            _settings.SetDefaultIndex(ConfigurationManager.AppSettings["DefaultIndex"]);
+            _settings.MapDefaultTypeNames(m => m.Add(typeof(HadoopMetaDataModels), ConfigurationManager.AppSettings["DefaultIndexType"]));
 
             Current = new ElasticClient(_settings);
             Current.Map<HadoopMetaDataModels>(m => m

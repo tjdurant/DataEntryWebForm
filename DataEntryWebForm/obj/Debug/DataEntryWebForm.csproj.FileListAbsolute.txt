@@ -74,6 +74,7 @@ c:\users\thoma\documents\visual studio 2015\Projects\DataEntryWebForm\DataEntryW
 c:\users\thoma\documents\visual studio 2015\Projects\DataEntryWebForm\DataEntryWebForm\obj\Debug\DataEntryWebForm.csprojResolveAssemblyReference.cache
 c:\users\thoma\documents\visual studio 2015\Projects\DataEntryWebForm\DataEntryWebForm\obj\Debug\DataEntryWebForm.dll
 c:\users\thoma\documents\visual studio 2015\Projects\DataEntryWebForm\DataEntryWebForm\obj\Debug\DataEntryWebForm.pdb
+C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\obj\Debug\DataEntryWebForm.csprojResolveAssemblyReference.cache
 C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\roslyn\csc.exe
 C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
 C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
@@ -86,14 +87,19 @@ C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\roslyn\S
 C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\roslyn\vbc.exe
 C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\roslyn\VBCSCompiler.exe
 C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\ElasticQueryDsl\details_index.txt
+C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\ElasticQueryDsl\id_query.txt
+C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\ElasticQueryDsl\search_query.txt
 C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\DataEntryWebForm.dll.config
 C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\DataEntryWebForm.dll
 C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\DataEntryWebForm.pdb
 C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\Antlr3.Runtime.dll
 C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\CKEditor.NET.dll
+C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\DataEntry.Storage.dll
 C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\Elasticsearch.Net.dll
 C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\EntityFramework.dll
 C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\EntityFramework.SqlServer.dll
+C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\HtmlAgilityPack.dll
 C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\Microsoft.AspNet.Identity.Core.dll
 C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\Microsoft.AspNet.Identity.EntityFramework.dll
 C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\Microsoft.AspNet.Identity.Owin.dll
@@ -108,6 +114,8 @@ C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\Microsof
 C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\Microsoft.Owin.Security.OAuth.dll
 C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\Microsoft.Owin.Security.Twitter.dll
 C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\Mvc.JQuery.DataTables.Core.dll
+C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\Mvc.JQuery.DataTables.dll
 C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\Nest.dll
 C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\Newtonsoft.Json.dll
 C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\Owin.dll
@@ -119,8 +127,11 @@ C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\System.W
 C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\System.Web.WebPages.dll
 C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\System.Web.WebPages.Razor.dll
 C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\WebGrease.dll
+C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\DataEntry.Storage.pdb
 C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\Elasticsearch.Net.pdb
 C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\Elasticsearch.Net.xml
+C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\HtmlAgilityPack.pdb
+C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\HtmlAgilityPack.xml
 C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\Nest.pdb
 C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\Nest.xml
@@ -149,9 +160,3 @@ C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\Microsof
 C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\obj\Debug\DataEntryWebForm.dll
 C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\obj\Debug\DataEntryWebForm.pdb
-C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\Mvc.JQuery.DataTables.Core.dll
-C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\Mvc.JQuery.DataTables.dll
-C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\HtmlAgilityPack.dll
-C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\HtmlAgilityPack.pdb
-C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\HtmlAgilityPack.xml
-C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\obj\Debug\DataEntryWebForm.csprojResolveAssemblyReference.cache

@@ -7,13 +7,13 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using DataEntryWebForm.Models;
-using DataEntryWebForm.DataAccessLayer;
-using DataEntryWebForm.Content.ElasticAPI;
 using System.IO;
 using Nest;
 using Newtonsoft.Json;
 using DataEntryWebForm.Helpers;
 using System.Globalization;
+using DataEntry.Storage;
+using DataEntry.Storage.Documents;
 
 namespace DataEntryWebForm.Controllers
 {
@@ -21,14 +21,14 @@ namespace DataEntryWebForm.Controllers
     public class DataEntryController : Controller
     {
         
-        private ElasticQueries eq = new ElasticQueries();
+        private ElasticQueries _eq = new ElasticQueries();
 
         
         [HttpGet]
         public ActionResult Index()
         {
             // List all data from default index
-            return View(eq.IndexDetails());
+            return View(_eq.IndexDetails());
         }
 
 
@@ -42,7 +42,7 @@ namespace DataEntryWebForm.Controllers
             }
 
             // list details of document with specific id
-            return View(eq.IdDetails(id));
+            return View(_eq.IdDetails(id));
         }
 
 
@@ -50,12 +50,16 @@ namespace DataEntryWebForm.Controllers
         public ActionResult Create()
         {
 
-            var model = new HadoopMetaDataModels();
+            var data = new List<SelectListItem>{
+                 new SelectListItem{ Value="1",Text="HDFS"},
+                 new SelectListItem{ Value="2",Text="Elastic"},
+                 new SelectListItem{ Value="3",Text="HBase"},
+                 new SelectListItem{ Value="4",Text="Other"},
+             };
 
-            // populates list for ListBoxFor from a method within the HaddopMetaDataModels
-            model.StorageLocations = model.getStorageLocations();
+            ViewBag.StorageLocations = data;
 
-            return View(model);
+            return View();
         }
 
 
@@ -99,17 +103,21 @@ namespace DataEntryWebForm.Controllers
         public ActionResult Edit(string id)
         {
 
-            var model = new HadoopMetaDataModels();
+            var data = new List<SelectListItem>{
+                 new SelectListItem{ Value="1",Text="HDFS"},
+                 new SelectListItem{ Value="2",Text="Elastic"},
+                 new SelectListItem{ Value="3",Text="HBase"},
+                 new SelectListItem{ Value="4",Text="Other"},
+             };
 
-            // populates SelectListItem 
-            model.StorageLocations = model.getStorageLocations();
+            ViewBag.StorageLocations = data;
 
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            return View(eq.IdDetails(id));
+            return View(_eq.IdDetails(id));
         }
 
 
@@ -146,7 +154,7 @@ namespace DataEntryWebForm.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            return View(eq.IdDetails(id));
+            return View(_eq.IdDetails(id));
         }
 
 
@@ -176,7 +184,7 @@ namespace DataEntryWebForm.Controllers
         public ActionResult Search(SearchElasticModels model)
         {
             var searchResults = new List<HadoopMetaDataModels>();
-            searchResults = eq.SearchElastic(model.Query);
+            searchResults = _eq.SearchElastic(model.Query);
 
             if(searchResults.Count() == 0)
             {

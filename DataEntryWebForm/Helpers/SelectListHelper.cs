@@ -8,7 +8,7 @@ namespace DataEntryWebForm.Helpers
 {
     public class SelectListHelper
     {
-        public static IEnumerable<SelectListItem> getStorageLocations()
+        public static IEnumerable<SelectListItem> GetStorageLocations()
         {
             List<SelectListItem> myList = new List<SelectListItem>();
             var data = new[]{

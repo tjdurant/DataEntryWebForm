@@ -1,14 +1,9 @@
-﻿using DataEntryWebForm.Content.ElasticAPI;
-using Nest;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+using Nest;
 
 // Data transfer objects
-namespace DataEntryWebForm.Models
+namespace DataEntry.Storage.Documents
 {
     [ElasticType(Name = "hadoop_metadata")]
     public class HadoopMetaDataModels
@@ -18,7 +13,7 @@ namespace DataEntryWebForm.Models
         [ElasticProperty(Name = "Id")]
         public string Id { get; set; }
 
-        [Required(ErrorMessage = "Field Required")]
+        // [Required(ErrorMessage = "Field Required")]
         [ElasticProperty(Name = "extract_name")]
         public string ExtractName { get; set; }
 
@@ -26,8 +21,8 @@ namespace DataEntryWebForm.Models
         public string Description { get; set; }
 
         // BUG: This is still searchable with query despite the NotAnalyzed
-        [AllowHtml]
-        [Required(ErrorMessage = "Field Required")]
+        // [AllowHtml]
+        // [Required(ErrorMessage = "Field Required")]
         [ElasticProperty(Name = "description_html", Index = FieldIndexOption.NotAnalyzed)]
         public string DescriptionHtml { get; set; }
 
@@ -50,22 +45,7 @@ namespace DataEntryWebForm.Models
         [ElasticProperty(Name = "storage_location")]
         public List<string> ClusterStorageLocation { get; set; }
 
-        [ElasticProperty(Name = "storage_locations")]
-        public IEnumerable<SelectListItem> StorageLocations { get; set; }
-
-        // Define the list which you have to show in ListBox List
-        public IEnumerable<SelectListItem> getStorageLocations()
-        {
-            List<SelectListItem> myList = new List<SelectListItem>();
-            var data = new[]{
-                 new SelectListItem{ Value="1",Text="HDFS"},
-                 new SelectListItem{ Value="2",Text="Elastic"},
-                 new SelectListItem{ Value="3",Text="HBase"},
-                 new SelectListItem{ Value="4",Text="Other"},
-             };
-            myList = data.ToList();
-            return myList;
-        }
+        // public IEnumerable<SelectListItem> StorageLocations { get; set; }
 
         [ElasticProperty(Name = "storage_path")]
         public string ClusterStoragePath { get; set; }
@@ -78,7 +58,7 @@ namespace DataEntryWebForm.Models
 
     public class EditHadoopDataModels
     {
-        private ElasticQueries eq = new ElasticQueries();
+        private ElasticQueries _eq = new ElasticQueries();
 
         // GET: DataEntry
         public EditHadoopDataModels()
