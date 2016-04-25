@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Nest;
 
@@ -20,10 +21,8 @@ namespace DataEntry.Storage.Documents
         [ElasticProperty(Name = "description")]
         public string Description { get; set; }
 
-        // BUG: This is still searchable with query despite the NotAnalyzed
-        // [AllowHtml]
         // [Required(ErrorMessage = "Field Required")]
-        [ElasticProperty(Name = "description_html", Index = FieldIndexOption.NotAnalyzed)]
+        [ElasticProperty(Name = "description_html", Index = FieldIndexOption.No)]
         public string DescriptionHtml { get; set; }
 
         [ElasticProperty(Name = "requestor")]
@@ -43,9 +42,7 @@ namespace DataEntry.Storage.Documents
 
         // select box; hdfs, hbase, elastic, other
         [ElasticProperty(Name = "storage_location")]
-        public List<string> ClusterStorageLocation { get; set; }
-
-        // public IEnumerable<SelectListItem> StorageLocations { get; set; }
+        public IList<string> ClusterStorageLocation { get; set; }
 
         [ElasticProperty(Name = "storage_path")]
         public string ClusterStoragePath { get; set; }
@@ -58,20 +55,14 @@ namespace DataEntry.Storage.Documents
 
     public class EditHadoopDataModels
     {
-        private ElasticQueries _eq = new ElasticQueries();
-
-        // GET: DataEntry
-        public EditHadoopDataModels()
-        {
-            // Id = eq.IndexDetails();
-        }
 
         public double Id { get; set; }
-        public List<HadoopMetaDataModels> HadoopMetaData { get; set; }
+        public IList<HadoopMetaDataModels> HadoopMetaData { get; set; }
 
     }
 
-    public class SearchElasticModels
+
+    public class SearchViewModels
     {
 
         public string Query { get; set; }

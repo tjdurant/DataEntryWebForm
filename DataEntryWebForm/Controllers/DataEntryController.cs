@@ -21,7 +21,7 @@ namespace DataEntryWebForm.Controllers
     public class DataEntryController : Controller
     {
         
-        private ElasticQueries _eq = new ElasticQueries();
+        private ElasticQueries _eq = new ElasticQueries(System.Web.HttpContext.Current.Server.MapPath(@"~/App_Data/ElasticQueryDsl"));
 
         
         [HttpGet]
@@ -181,26 +181,46 @@ namespace DataEntryWebForm.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Search(SearchElasticModels model)
+        public ActionResult Search(SearchViewModels model)
         {
             var searchResults = new List<HadoopMetaDataModels>();
+            
+
             searchResults = _eq.SearchElastic(model.Query);
 
-            if(searchResults.Count() == 0)
+
+
+            var vmData = new List<HadoopMetaViewModels>();
+
+            // TODO: MetaDataModel to ViewModel
+            if (searchResults != null)
+            {
+                foreach (HadoopMetaDataModels item in searchResults)
+                {
+                    var vm = new HadoopMetaViewModels();
+                    {
+                        vm.Id = item.Id;
+                        vm.ExtractName = item.ExtractName;
+                        
+                    };
+                    vmData.Add(vm);
+                }
+            }
+            else
             {
                 return RedirectToAction("Search");
             }
 
             // This should list the data that is in your index
-            return View("Results", searchResults );
+            return View("Results", vmData);
         }
 
 
         [HttpGet]
         public ActionResult Results(List<HadoopMetaDataModels> searchResults)
         {
-            //var result = new List<HadoopMetaDataModels>();
-            //result = searchResults;
+            var result = new List<HadoopMetaDataModels>();
+            result = searchResults;
 
             return View(searchResults);
         }

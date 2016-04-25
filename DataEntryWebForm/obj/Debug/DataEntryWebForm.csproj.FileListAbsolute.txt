@@ -87,9 +87,6 @@ C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\roslyn\S
 C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\roslyn\vbc.exe
 C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\roslyn\VBCSCompiler.exe
 C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\roslyn\VBCSCompiler.exe.config
-C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\ElasticQueryDsl\details_index.txt
-C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\ElasticQueryDsl\id_query.txt
-C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\ElasticQueryDsl\search_query.txt
 C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\DataEntryWebForm.dll.config
 C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\DataEntryWebForm.dll
 C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\DataEntryWebForm.pdb
@@ -160,3 +157,6 @@ C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\Microsof
 C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\obj\Debug\DataEntryWebForm.dll
 C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\obj\Debug\DataEntryWebForm.pdb
+C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\App_Data\ElasticQueryDsl\details_index.txt
+C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\App_Data\ElasticQueryDsl\id_query.txt
+C:\Users\thoma\Documents\00GitHub\DataEntryWebForm\DataEntryWebForm\bin\App_Data\ElasticQueryDsl\search_query.txt

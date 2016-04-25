@@ -4,17 +4,25 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Web;
+using System.Web.Hosting;
 using DataEntry.Storage.Documents;
 
 namespace DataEntry.Storage
 {
     public class ElasticQueries : EsClient
     {
+
         // instantiate connection object
         private readonly EsClient _ec = new EsClient();
 
         // set queryDsl path
-        private readonly string _queryDslPath = HttpContext.Current.Server.MapPath(@"~\App_Data\ElasticQueryDsl");
+        private readonly string _queryDslPath;
+
+        // Constructor
+        public ElasticQueries(string dslPath)
+        {
+            _queryDslPath = dslPath;
+        } 
 
         public List<HadoopMetaDataModels> IndexDetails()
         {
@@ -84,6 +92,7 @@ namespace DataEntry.Storage
 
             return idDetailsResult;
         }
+
 
         public List<HadoopMetaDataModels> SearchElastic(string query)
         {
