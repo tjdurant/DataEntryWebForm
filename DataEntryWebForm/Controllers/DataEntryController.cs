@@ -201,7 +201,16 @@ namespace DataEntryWebForm.Controllers
                     {
                         vm.Id = item.Id;
                         vm.ExtractName = item.ExtractName;
-                        
+                        vm.ClusterStorageLocation = item.ClusterStorageLocation;
+                        vm.ClusterStoragePath = item.ClusterStoragePath;
+                        vm.DataExtractDetails = item.DataExtractDetails;
+                        vm.DataSources = item.DataSources;
+                        vm.Description = item.Description;
+                        vm.DescriptionHtml = item.DescriptionHtml;
+                        vm.Request = item.Request;
+                        vm.RequestorEmail = item.RequestorEmail;
+                        vm.Requestor = item.Requestor;
+                        vm.StartDate = item.StartDate;
                     };
                     vmData.Add(vm);
                 }
