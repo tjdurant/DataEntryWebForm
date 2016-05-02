@@ -34,21 +34,6 @@ namespace DataEntryWebForm.Controllers
         }
 
 
-        // TODO: change to ViewModel
-        [HttpGet]
-        public ActionResult Details(string id)
-        {
-
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            // list details of document with specific id
-            return View(_eq.IdDetails(id));
-        }
-
-
         [HttpGet]
         public ActionResult Create()
         {
@@ -63,6 +48,20 @@ namespace DataEntryWebForm.Controllers
             ViewBag.StorageLocations = data;
 
             return View();
+        }
+
+        // TODO: change to ViewModel
+        [HttpGet]
+        public ActionResult Details(string id)
+        {
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            // list details of document with specific id
+            return View(_eq.IdDetails(id));
         }
 
 
@@ -89,6 +88,7 @@ namespace DataEntryWebForm.Controllers
 
 
         // TODO: change to ViewModel
+        // BUG: View does not handle null storage location lists. None of the views do. 
         [HttpGet]
         public ActionResult Delete(string id)
         {
@@ -109,7 +109,7 @@ namespace DataEntryWebForm.Controllers
             return View();
         }
 
-        // TODO: change to ViewModel
+        // TODO: Why is this here? What does this do?
         [HttpGet]
         public ActionResult Results(List<HadoopMetaDataModels> searchResults)
         {
@@ -132,6 +132,7 @@ namespace DataEntryWebForm.Controllers
 
             hadoopMetaDataModels.Id = Guid.NewGuid().ToString();
 
+            // TODO: Reduce to function?
             // create index; index doesn't exist
             es.Current.CreateIndex(ci => ci.Index("hadoop_metadata")
                 .AddMapping<HadoopMetaDataModels>(m => m
@@ -158,27 +159,26 @@ namespace DataEntryWebForm.Controllers
         }
 
 
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // TODO: Delete extra instantiate step
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,ExtractName,Description,DescriptionHtml,Requestor,RequestorEmail,Request,DataExtractDetails,ClusterStorageLocation,ClusterStoragePath,StartDate")] HadoopMetaDataModels hadoopMetaDataModels)
         {
-
             // instantiate elastic client from data access layer
             EsClient es = new EsClient();
 
             // set description(without html) to model.Description 
             hadoopMetaDataModels.Description = TextParseHelper.StripHtml(hadoopMetaDataModels.DescriptionHtml);
 
+            // Clear model state for IsValid Check
             ModelState.Clear();
-            if (ModelState.IsValid)
-            {
-                es.Current.Index<HadoopMetaDataModels>(hadoopMetaDataModels);
-                return RedirectToAction("Index");
-            }
 
-            return View(hadoopMetaDataModels);
+            // If modelstate not valid; return to Edit_Post
+            if (!ModelState.IsValid) return View(hadoopMetaDataModels);
+
+            // Else: Index changes and return to Index Action
+            es.Current.Index<HadoopMetaDataModels>(hadoopMetaDataModels);
+            return RedirectToAction("Index");
         }
 
 
@@ -186,12 +186,11 @@ namespace DataEntryWebForm.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            EsClient es = new EsClient();
 
-            var resDel = es.Current.Delete<HadoopMetaDataModels>(d => d
+            _eq.Current.Delete<HadoopMetaDataModels>(d => d
                .Id(id.ToString())
                .Index("hadoop_metadata"));
-
+            
             return RedirectToAction("Index");
         }
 
@@ -200,16 +199,13 @@ namespace DataEntryWebForm.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Search(SearchViewModels model)
         {
-            var searchResults = new List<HadoopMetaDataModels>();
-            
+            // Search elastic index with search Query
+            var searchResults = _eq.SearchElastic(model.Query);
 
-            searchResults = _eq.SearchElastic(model.Query);
-
-
-
+            // Instantiate ViewModel
             var vmData = new List<HadoopMetaViewModels>();
 
-
+            // TODO: Reuse this code in method?
             if (searchResults != null)
             {
                 foreach (HadoopMetaDataModels item in searchResults)
@@ -228,7 +224,8 @@ namespace DataEntryWebForm.Controllers
                         vm.RequestorEmail = item.RequestorEmail;
                         vm.Requestor = item.Requestor;
                         vm.StartDate = item.StartDate;
-                    };
+                    }
+                    ;
                     vmData.Add(vm);
                 }
             }
@@ -237,8 +234,9 @@ namespace DataEntryWebForm.Controllers
                 return RedirectToAction("Search");
             }
 
-            // This should list the data that is in your index
+            // Return results page with ViewModel
             return View("Results", vmData);
         }
+
     }
 }

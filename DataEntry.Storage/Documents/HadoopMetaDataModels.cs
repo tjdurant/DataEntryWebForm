@@ -22,7 +22,7 @@ namespace DataEntry.Storage.Documents
         [ElasticProperty(Name = "description")]
         public string Description { get; set; }
 
-        // [Required(ErrorMessage = "Field Required")]
+        // BUG: Should this AllowHtml?
         [AllowHtml]
         [ElasticProperty(Name = "description_html", Index = FieldIndexOption.No)]
         public string DescriptionHtml { get; set; }
