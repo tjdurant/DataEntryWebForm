@@ -23,7 +23,9 @@ namespace DataEntryWebForm.Controllers
         
         private ElasticQueries _eq = new ElasticQueries(System.Web.HttpContext.Current.Server.MapPath(@"~/App_Data/ElasticQueryDsl"));
 
-        
+        // HttpPost Methods ################################################################
+
+        // TODO: change to ViewModel
         [HttpGet]
         public ActionResult Index()
         {
@@ -32,6 +34,7 @@ namespace DataEntryWebForm.Controllers
         }
 
 
+        // TODO: change to ViewModel
         [HttpGet]
         public ActionResult Details(string id)
         {
@@ -63,42 +66,6 @@ namespace DataEntryWebForm.Controllers
         }
 
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,ExtractName,Description,DescriptionHtml,Requestor,RequestorEmail,DataSources,DataExtractDetails,ClusterStorageLocation,ClusterStoragePath,StartDate")] HadoopMetaDataModels hadoopMetaDataModels)
-        {
-
-            // instantiate elastic client from data access layer
-            EsClient es = new EsClient();
-
-            // 
-            hadoopMetaDataModels.Id = Guid.NewGuid().ToString();
-
-            // create index; index doesn't exist
-            es.Current.CreateIndex(ci => ci.Index("hadoop_metadata")
-                .AddMapping<HadoopMetaDataModels>(m => m
-                    .MapFromAttributes()));
-
-            // index does exist; apply index for inserts; builds as per document(model)
-            var response = es.Current.Map<HadoopMetaDataModels>(m =>
-                m.MapFromAttributes()
-                    .Type<HadoopMetaDataModels>()
-                    .Indices("hadoop_metadata"));
-            
-            // set description(without html) to model.Description 
-            hadoopMetaDataModels.Description = TextParseHelper.StripHtml(hadoopMetaDataModels.DescriptionHtml);
-
-            //ModelState.SetModelValue("Description", new ValueProviderResult(description, "", CultureInfo.InvariantCulture));
-            ModelState.Clear();
-            if (ModelState.IsValid)
-            {
-                es.Current.Index<HadoopMetaDataModels>(hadoopMetaDataModels);
-                return RedirectToAction("Index");
-            }
-
-            return View(hadoopMetaDataModels);
-        }
-
         [HttpGet]
         public ActionResult Edit(string id)
         {
@@ -118,6 +85,76 @@ namespace DataEntryWebForm.Controllers
             }
 
             return View(_eq.IdDetails(id));
+        }
+
+
+        // TODO: change to ViewModel
+        [HttpGet]
+        public ActionResult Delete(string id)
+        {
+            EsClient es = new EsClient();
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            return View(_eq.IdDetails(id));
+        }
+
+
+        [HttpGet]
+        public ActionResult Search()
+        {
+            return View();
+        }
+
+        // TODO: change to ViewModel
+        [HttpGet]
+        public ActionResult Results(List<HadoopMetaDataModels> searchResults)
+        {
+            var result = new List<HadoopMetaDataModels>();
+            result = searchResults;
+
+            return View(searchResults);
+        }
+
+
+        // HttpPost Methods ################################################################
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "Id,ExtractName,Description,DescriptionHtml,Requestor,RequestorEmail,DataSources,DataExtractDetails,ClusterStorageLocation,ClusterStoragePath,StartDate")] HadoopMetaDataModels hadoopMetaDataModels)
+        {
+
+            // instantiate elastic client from data access layer
+            EsClient es = new EsClient();
+
+            hadoopMetaDataModels.Id = Guid.NewGuid().ToString();
+
+            // create index; index doesn't exist
+            es.Current.CreateIndex(ci => ci.Index("hadoop_metadata")
+                .AddMapping<HadoopMetaDataModels>(m => m
+                    .MapFromAttributes()));
+
+            // index does exist; apply index for inserts; builds as per document(model)
+            var response = es.Current.Map<HadoopMetaDataModels>(m =>
+                m.MapFromAttributes()
+                    .Type<HadoopMetaDataModels>()
+                    .Indices("hadoop_metadata"));
+
+            // set description(without html) to model.Description 
+            hadoopMetaDataModels.Description = TextParseHelper.StripHtml(hadoopMetaDataModels.DescriptionHtml);
+
+            //ModelState.SetModelValue("Description", new ValueProviderResult(description, "", CultureInfo.InvariantCulture));
+            ModelState.Clear();
+            if (ModelState.IsValid)
+            {
+                es.Current.Index<HadoopMetaDataModels>(hadoopMetaDataModels);
+                return RedirectToAction("Index");
+            }
+
+            return View(hadoopMetaDataModels);
         }
 
 
@@ -144,19 +181,6 @@ namespace DataEntryWebForm.Controllers
             return View(hadoopMetaDataModels);
         }
 
-        [HttpGet]
-        public ActionResult Delete(string id)
-        {
-            EsClient es = new EsClient();
-
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            return View(_eq.IdDetails(id));
-        }
-
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -169,13 +193,6 @@ namespace DataEntryWebForm.Controllers
                .Index("hadoop_metadata"));
 
             return RedirectToAction("Index");
-        }
-
-
-        [HttpGet]
-        public ActionResult Search()
-        {
-            return View();
         }
 
 
@@ -192,7 +209,7 @@ namespace DataEntryWebForm.Controllers
 
             var vmData = new List<HadoopMetaViewModels>();
 
-            // TODO: MetaDataModel to ViewModel
+
             if (searchResults != null)
             {
                 foreach (HadoopMetaDataModels item in searchResults)
@@ -222,16 +239,6 @@ namespace DataEntryWebForm.Controllers
 
             // This should list the data that is in your index
             return View("Results", vmData);
-        }
-
-
-        [HttpGet]
-        public ActionResult Results(List<HadoopMetaDataModels> searchResults)
-        {
-            var result = new List<HadoopMetaDataModels>();
-            result = searchResults;
-
-            return View(searchResults);
         }
     }
 }

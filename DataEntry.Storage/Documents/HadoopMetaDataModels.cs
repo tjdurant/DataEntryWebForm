@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Web.Mvc;
 using Nest;
 
 // Data transfer objects
@@ -22,6 +23,7 @@ namespace DataEntry.Storage.Documents
         public string Description { get; set; }
 
         // [Required(ErrorMessage = "Field Required")]
+        [AllowHtml]
         [ElasticProperty(Name = "description_html", Index = FieldIndexOption.No)]
         public string DescriptionHtml { get; set; }
 
