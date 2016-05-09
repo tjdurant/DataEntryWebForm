@@ -89,7 +89,6 @@ namespace DataEntryWebForm.Controllers
         }
 
 
-        // BUG: View does not handle null storage location lists. None of the views do. 
         [HttpGet]
         public ActionResult Delete(string id)
         {
@@ -150,7 +149,6 @@ namespace DataEntryWebForm.Controllers
         }
 
 
-        // TODO: Delete extra instantiate step
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,ExtractName,Description,DescriptionHtml,Requestor,RequestorEmail,Request,DataExtractDetails,ClusterStorageLocation,ClusterStoragePath,StartDate")] HadoopMetaDataModels hadoopMetaDataModels)
