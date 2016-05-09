@@ -25,6 +25,7 @@ namespace DataEntryWebForm.Controllers
 
         // HttpPost Methods ################################################################
 
+
         // TODO: change to ViewModel
         [HttpGet]
         public ActionResult Index()
@@ -49,6 +50,7 @@ namespace DataEntryWebForm.Controllers
 
             return View();
         }
+
 
         // TODO: change to ViewModel
         [HttpGet]
@@ -87,7 +89,6 @@ namespace DataEntryWebForm.Controllers
         }
 
 
-        // TODO: change to ViewModel
         // BUG: View does not handle null storage location lists. None of the views do. 
         [HttpGet]
         public ActionResult Delete(string id)
@@ -107,16 +108,6 @@ namespace DataEntryWebForm.Controllers
         public ActionResult Search()
         {
             return View();
-        }
-
-        // TODO: Why is this here? What does this do?
-        [HttpGet]
-        public ActionResult Results(List<HadoopMetaDataModels> searchResults)
-        {
-            var result = new List<HadoopMetaDataModels>();
-            result = searchResults;
-
-            return View(searchResults);
         }
 
 
@@ -164,8 +155,6 @@ namespace DataEntryWebForm.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,ExtractName,Description,DescriptionHtml,Requestor,RequestorEmail,Request,DataExtractDetails,ClusterStorageLocation,ClusterStoragePath,StartDate")] HadoopMetaDataModels hadoopMetaDataModels)
         {
-            // instantiate elastic client from data access layer
-            EsClient es = new EsClient();
 
             // set description(without html) to model.Description 
             hadoopMetaDataModels.Description = TextParseHelper.StripHtml(hadoopMetaDataModels.DescriptionHtml);
@@ -177,7 +166,7 @@ namespace DataEntryWebForm.Controllers
             if (!ModelState.IsValid) return View(hadoopMetaDataModels);
 
             // Else: Index changes and return to Index Action
-            es.Current.Index<HadoopMetaDataModels>(hadoopMetaDataModels);
+            _eq.Current.Index<HadoopMetaDataModels>(hadoopMetaDataModels);
             return RedirectToAction("Index");
         }
 
@@ -205,7 +194,6 @@ namespace DataEntryWebForm.Controllers
             // Instantiate ViewModel
             var vmData = new List<HadoopMetaViewModels>();
 
-            // TODO: Reuse this code in method?
             if (searchResults != null)
             {
                 foreach (HadoopMetaDataModels item in searchResults)

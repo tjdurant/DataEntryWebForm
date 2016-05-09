@@ -85,7 +85,8 @@ namespace DataEntry.Storage
                 idDetailsResult.Request = item.Source.Request;
                 idDetailsResult.DataSources = item.Source.DataSources;
                 idDetailsResult.DataExtractDetails = item.Source.DataExtractDetails;
-                idDetailsResult.ClusterStorageLocation = item.Source.ClusterStorageLocation;
+                // TODO: test this 
+                idDetailsResult.ClusterStorageLocation = item.Source.ClusterStorageLocation ?? new List<string>();
                 idDetailsResult.ClusterStoragePath = item.Source.ClusterStoragePath;
                 idDetailsResult.StartDate = item.Source.StartDate;
             }

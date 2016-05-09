@@ -4,7 +4,8 @@
       "query": "***query",
       "fields": [
         "description",
-        "requestor"
+        "requestor",
+		"extract_name"
       ]
     }
   }
